@@ -9,7 +9,7 @@ A mod for SpiderHeck by AeonS. Sister mod: [SpiderHeck Palette](https://github.c
 - **Choose the battle music.** Pick which of the game's battle music tracks play during matches (survival waves and versus rounds).
 - **Your own songs.** Adds your own songs from a folder to the battle music shuffle.
 - **Supported files.** .mp3, .ogg, and .wav (8, 16, or 24-bit PCM, or 32-bit float). 32-bit integer WAV is not supported.
-- **Sensible shuffle.** Picks a random enabled track; never repeats the track that just finished unless it is the only one enabled. A single enabled track loops.
+- **The game's own shuffle.** Your songs join the game's shuffle and follow its rules. A track keeps playing from wave to wave while it lasts. Each new pick is a random enabled track, and the game never plays the same one twice in a row. A single enabled track loops.
 - **Off switch.** If every track (game and custom) is switched off, battle music is silent, and the menu shows a warning saying so.
 - **Untouched when idle.** If nothing is changed (no custom tracks on, no game tracks off), the game's own music code runs untouched.
 - **Battle music only.** Only battle music is changed; the lobby theme and the victory theme are not.
