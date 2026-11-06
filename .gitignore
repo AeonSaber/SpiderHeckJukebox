@@ -1,0 +1,8 @@
+bin/
+obj/
+lib/
+deployed-backup/
+.vs/
+*.user
+_readme-facts.md
+_example-README.md
