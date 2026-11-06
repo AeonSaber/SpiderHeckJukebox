@@ -81,27 +81,38 @@ namespace Jukebox
             _customised = anyNativeDisabled || anyCustom;
         }
 
-        // A random track from the pool, never the one that just played (unless it is the only one).
+        private static AudioClip _lastPicked;
+
+        // A random track from the pool, never the one that played last (unless it is the only one).
+        // Between rounds the music source holds the victory theme, so "the one that played last" is
+        // remembered here rather than read from the source.
         public static AudioClip PickNext(List<AudioClip> pool, AudioClip current)
         {
             if (pool.Count == 1)
             {
-                return pool[0];
+                _lastPicked = pool[0];
+                return _lastPicked;
             }
 
-            int currentIndex = current != null ? pool.IndexOf(current) : -1;
-            if (currentIndex < 0)
+            AudioClip avoid = current != null && pool.Contains(current) ? current : _lastPicked;
+            int avoidIndex = avoid != null ? pool.IndexOf(avoid) : -1;
+
+            int index;
+            if (avoidIndex < 0)
             {
-                return pool[Random.Range(0, pool.Count)];
+                index = Random.Range(0, pool.Count);
             }
-
-            int index = Random.Range(0, pool.Count - 1);
-            if (index >= currentIndex)
+            else
             {
-                index++;
+                index = Random.Range(0, pool.Count - 1);
+                if (index >= avoidIndex)
+                {
+                    index++;
+                }
             }
 
-            return pool[index];
+            _lastPicked = pool[index];
+            return _lastPicked;
         }
     }
 }
